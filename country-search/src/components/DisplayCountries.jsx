@@ -23,7 +23,13 @@ const DisplayCountries = () => {
     setSearch(e.target.value);
   };
   useEffect(() => {
-    const filtered = () => {};
+    const filtered = () => {
+      if (search === "") {
+        setFilterCountry([]);
+      } else {
+        setFilterCountry(countries);
+      }
+    };
     filtered();
   }, [search]);
 
@@ -37,13 +43,21 @@ const DisplayCountries = () => {
       />
       <hr />
       {filterCountry.length > 0 ? (
-        <Card country={filterCountry} />
+        <div className="container">
+          {filterCountry.map((country) => {
+            return <Card country={country.common} flag={country.png} />;
+          })}
+        </div>
       ) : (
         <>
-          {countries.map((countryData) => {
-            // console.log(countryData.common, countryData.png);
-            <Card country={countryData.common} flag={countryData.png} />;
-          })}
+          <div className="container">
+            {countries.map((countryData) => {
+              // console.log(countryData.common, countryData.png);
+              return (
+                <Card country={countryData.common} flag={countryData.png} />
+              );
+            })}
+          </div>
         </>
       )}
     </>

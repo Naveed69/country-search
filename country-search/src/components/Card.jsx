@@ -1,10 +1,18 @@
+import styles from "./Card.module.css";
 const Card = ({ country, flag }) => {
   console.log("inside card");
   return (
     <>
-      <h1>Hello</h1>
-      <h1>{country}</h1>
-      <div>{flag}</div>
+      <div className={styles.countryCard}>
+        <img
+          src={flag}
+          style={{
+            width: "100px",
+            height: "100px",
+          }}
+        />
+        <p>{country}</p>
+      </div>
     </>
   );
 };

@@ -13,6 +13,7 @@ const DisplayCountries = () => {
         const response = await fetch(url);
         const jsonData = await response.json();
         setCountires(jsonData);
+        setFilterCountry(jsonData);
       } catch (e) {
         console.error("Error while fetching API->", e);
       }
@@ -24,11 +25,11 @@ const DisplayCountries = () => {
   };
   useEffect(() => {
     const filtered = () => {
-      if (search === "") {
-        setFilterCountry([]);
-      } else {
-        setFilterCountry(countries);
-      }
+      setFilterCountry(
+        countries.filter((country) =>
+          country.common.toLowerCase().includes(search.toLowerCase())
+        )
+      );
     };
     filtered();
   }, [search]);
@@ -42,24 +43,12 @@ const DisplayCountries = () => {
         placeholder="Search for Country"
       />
       <hr />
-      {filterCountry.length > 0 ? (
-        <div className="countryCard">
-          {filterCountry.map((country) => {
-            return <Card country={country.common} flag={country.png} />;
-          })}
-        </div>
-      ) : (
-        <>
-          <div className="countryCard">
-            {countries.map((countryData) => {
-              // console.log(countryData.common, countryData.png);
-              return (
-                <Card country={countryData.common} flag={countryData.png} />
-              );
-            })}
-          </div>
-        </>
-      )}
+      <div className="countryCard">
+        {filterCountry.map((countryData) => {
+          // console.log(countryData.common, countryData.png);
+          return <Card country={countryData.common} flag={countryData.png} />;
+        })}
+      </div>
     </>
   );
 };

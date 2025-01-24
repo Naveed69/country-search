@@ -50,7 +50,7 @@ const DisplayCountries = () => {
         </div>
       ) : (
         <>
-          <div className="container">
+          <div className="countryCard">
             {countries.map((countryData) => {
               // console.log(countryData.common, countryData.png);
               return (

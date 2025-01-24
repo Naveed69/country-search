@@ -3,7 +3,7 @@ const Card = ({ country, flag }) => {
   console.log("inside card");
   return (
     <>
-      <div className={styles.countryCard}>
+      <div className={styles.countryCards}>
         <img
           src={flag}
           style={{

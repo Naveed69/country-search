@@ -43,7 +43,7 @@ const DisplayCountries = () => {
       />
       <hr />
       {filterCountry.length > 0 ? (
-        <div className="container">
+        <div className="countryCard">
           {filterCountry.map((country) => {
             return <Card country={country.common} flag={country.png} />;
           })}
